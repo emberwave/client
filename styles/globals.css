@@ -16,7 +16,27 @@ body {
 }
 
 #__next {
-  height: max-content;
+  height: 100vh;
+}
+
+::selection {
+  color: #fff;
+  background: #8229c6;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: linear-gradient(to top, #8229c6 0%, #2bf2e5 100%);
+  background: -webkit-linear-gradient(to top, #8229c6 0%, #2bf2e5 100%);
+  background: -moz-linear-gradient(to top, #8229c6 0%, #2bf2e5 100%);
 }
 
 #logo-text {
