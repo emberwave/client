@@ -34,7 +34,7 @@ export const PostsList: FC = () => {
 
   if (error)
     return (
-      <div className='grid grid-flow-row place-items-center w-[max-content]'>
+      <div className='grid grid-flow-row place-items-center w-[max-content] mx-auto'>
         <div>
           <Image src={island} width={80} height={80} />
         </div>
