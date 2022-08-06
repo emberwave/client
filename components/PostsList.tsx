@@ -3,7 +3,8 @@ import type { PostProps } from 'types';
 import Image from 'next/image';
 import { gql, useQuery } from '@apollo/client';
 
-import loading_icon from '@public/loading.svg';
+import loading_animation from '@public/loading.svg';
+import island from '@public/emberwave_island.svg';
 import { Post } from '@components/Post';
 
 export const PostsList: FC = () => {
@@ -26,8 +27,18 @@ export const PostsList: FC = () => {
 
   if (loading)
     return (
-      <div>
-        <Image src={loading_icon} />
+      <div className='flex justify-center'>
+        <Image src={loading_animation} width={50} height={50} />
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className='grid grid-flow-row place-items-center w-[max-content]'>
+        <div>
+          <Image src={island} width={80} height={80} />
+        </div>
+        <h1>something went wrong...</h1>
       </div>
     );
 
