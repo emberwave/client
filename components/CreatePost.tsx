@@ -1,6 +1,7 @@
-import type { FC } from 'react';
+import { FC, useContext } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import TextareaAutosize from 'react-textarea-autosize';
+import { UserContext } from 'UserContext';
 
 export const CreatePost: FC = () => {
   let title: string | undefined, content: string | undefined;
@@ -20,10 +21,12 @@ export const CreatePost: FC = () => {
     }
   `;
 
+  const { setValue } = useContext(UserContext);
+
   const [_submitPost] = useMutation(createPostMutation);
   const submitPost = () => {
     if (getPostInput()?.title.length !== 0) {
-      _submitPost({ variables: { title, content, tags: ['remember', 'to', 'add', 'later'] } });
+      _submitPost({ variables: { title, content, tags: ['remember', 'to', 'add', 'later'] } }).then(() => setValue({ reloadPostsList: true }));
 
       if (typeof window !== 'undefined') {
         (document.getElementById('title') as HTMLInputElement).value = '';

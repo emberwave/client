@@ -14,7 +14,7 @@ export const Post: FC<PostProps> = ({ id, title, content, tags, upvotes, downvot
         <h1>author</h1>
         <div className='grid grid-flow-col gap-[6px] w-[max-content] ml-[20px]'>
           {tags.map((tag) => (
-            <h1 className='text-ember-accent hover:text-ember-accent-hover duration-200'>{tag}</h1> // TODO: link to posts that contain this tag
+            <h1 className='text-ember-accent hover:text-ember-accent-hover duration-200'>#{tag}</h1> // TODO: link to posts that contain this tag
           ))}
         </div>
         <h1 className='ml-auto text-ember-gray'>{formatTime(createdAt)}</h1>

@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { FC, useContext } from 'react';
 import type { PostProps } from 'types';
 import Image from 'next/image';
 import { gql, useQuery } from '@apollo/client';
@@ -6,6 +6,7 @@ import { gql, useQuery } from '@apollo/client';
 import loading_animation from '@public/loading.svg';
 import island from '@public/emberwave_island.svg';
 import { Post } from '@components/Post';
+import { UserContext } from 'UserContext';
 
 export const PostsList: FC = () => {
   const query = gql`
@@ -23,11 +24,14 @@ export const PostsList: FC = () => {
     }
   `;
 
-  const { error, loading, data } = useQuery(query, { variables: { newest: true } });
+  const { value, setValue } = useContext(UserContext);
+  const { error, loading, data, refetch } = useQuery(query, { variables: { newest: true } });
+
+  if (value.reloadPostsList) refetch().then(() => setValue({ reloadPostsList: false }));
 
   if (loading)
     return (
-      <div className='flex justify-center'>
+      <div className='flex justify-center mt-[40px]'>
         <Image src={loading_animation} width={50} height={50} />
       </div>
     );
