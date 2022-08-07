@@ -9,8 +9,8 @@ import { Post } from '@components/Post';
 
 export const PostsList: FC = () => {
   const query = gql`
-    query {
-      posts {
+    query ($newest: Boolean) {
+      posts(newest: $newest) {
         id
         title
         content
@@ -23,7 +23,7 @@ export const PostsList: FC = () => {
     }
   `;
 
-  const { error, loading, data } = useQuery(query);
+  const { error, loading, data } = useQuery(query, { variables: { newest: true } });
 
   if (loading)
     return (
@@ -44,8 +44,8 @@ export const PostsList: FC = () => {
 
   return (
     <div>
-      {data.posts.map(({ id, title, content, tags, upvotes, downvotes, supervotes, createdAt }: PostProps) => (
-        <Post id={id} title={title} content={content} tags={tags} upvotes={upvotes} downvotes={downvotes} supervotes={supervotes} createdAt={createdAt} />
+      {data.posts.map((post: PostProps) => (
+        <Post {...post} />
       ))}
     </div>
   );
