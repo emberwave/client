@@ -1,10 +1,12 @@
-import { FC, useContext } from 'react';
+import type { FC } from 'react';
+import { useContext } from 'react';
 import type { PostProps } from 'types';
 import Image from 'next/image';
 import { gql, useQuery } from '@apollo/client';
 
 import loading_animation from '@public/loading.svg';
 import island from '@public/emberwave_island.svg';
+import camp from '@public/emberwave_camp.svg';
 import { Post } from '@components/Post';
 import { UserContext } from 'UserContext';
 
@@ -39,7 +41,7 @@ export const PostsList: FC = () => {
   if (error)
     return (
       <div className='grid grid-flow-row place-items-center w-[max-content] mx-auto mt-[40px]'>
-        <div>
+        <div className='up-down-animation'>
           <Image src={island} width={80} height={80} />
         </div>
         <h1>something went wrong...</h1>
@@ -47,10 +49,18 @@ export const PostsList: FC = () => {
     );
 
   return (
-    <div>
+    <>
       {data.posts.map((post: PostProps) => (
-        <Post {...post} />
+        <Post {...post} key={post.id} />
       ))}
-    </div>
+      <div>
+        <div className='grid grid-flow-row place-items-center w-[max-content] mx-auto mt-[40px]'>
+          <div className='up-down-animation'>
+            <Image src={camp} width={80} height={80} />
+          </div>
+          <h1>no more posts :/</h1>
+        </div>
+      </div>
+    </>
   );
 };

@@ -16,8 +16,8 @@ export const CreatePost: FC = () => {
   };
 
   const createPostMutation = gql`
-    mutation ($title: String!, $tags: [String]!, $content: String) {
-      createPost(title: $title, tags: $tags, content: $content)
+    mutation ($authorId: ID!, $title: String!, $content: String!, $tags: [String]!) {
+      createPost(authorId: $authorId, title: $title, content: $content, tags: $tags)
     }
   `;
 
@@ -26,7 +26,8 @@ export const CreatePost: FC = () => {
   const [_submitPost] = useMutation(createPostMutation);
   const submitPost = () => {
     if (getPostInput()?.title.length !== 0) {
-      _submitPost({ variables: { title, content, tags: ['remember', 'to', 'add', 'later'] } }).then(() => setValue({ reloadPostsList: true }));
+      // TODO: change temp author id
+      _submitPost({ variables: { authorId: '62f1928101da0d0fef48f46b', title, content, tags: ['remember', 'to', 'add', 'later'] } }).then(() => setValue({ reloadPostsList: true }));
 
       if (typeof window !== 'undefined') {
         (document.getElementById('title') as HTMLInputElement).value = '';
@@ -36,7 +37,7 @@ export const CreatePost: FC = () => {
   };
 
   return (
-    <div className='bg-ember-dark-300 rounded-[8px] p-[4px]'>
+    <div className='bg-ember-dark-300 rounded-none sm:rounded-[8px] p-[4px]'>
       <h1 className='ml-[4px]'>say something...</h1>
       <div className='grid grid-flow-row gap-[6px] m-[2px] mb-[4px]'>
         <TextareaAutosize id='title' placeholder='title (required)' className='bg-ember-dark-200 rounded-[6px] pl-[4px] pr-[2px] outline-none overflow-x-hidden text-white no-scrollbar resize-none' />
