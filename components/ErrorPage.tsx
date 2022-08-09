@@ -9,7 +9,7 @@ export const ErrorPage: NextPage<{ error?: number; message: string }> = (props) 
     <>
       <div className='flex justify-center align-middle h-[100%]'>
         <div className='my-auto grid grid-flow-row place-items-center'>
-          <div className='mb-[10px]'>
+          <div className='mb-[10px] up-down-animation'>
             <Image src={island} width={80} height={80} />
           </div>
           <h1 className=''>
