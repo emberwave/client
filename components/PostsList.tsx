@@ -22,6 +22,10 @@ export const PostsList: FC = () => {
         downvotes
         supervotes
         createdAt
+        author {
+          tag
+          tagNumber
+        }
       }
     }
   `;

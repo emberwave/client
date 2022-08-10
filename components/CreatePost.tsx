@@ -27,7 +27,7 @@ export const CreatePost: FC = () => {
   const submitPost = () => {
     if (getPostInput()?.title.length !== 0) {
       // TODO: change temp author id
-      _submitPost({ variables: { authorId: '62f1928101da0d0fef48f46b', title, content, tags: ['remember', 'to', 'add', 'later'] } }).then(() => setValue({ reloadPostsList: true }));
+      _submitPost({ variables: { authorId: '62f313680eae94e345806da8', title, content, tags: ['remember', 'to', 'add', 'later'] } }).then(() => setValue({ reloadPostsList: true }));
 
       if (typeof window !== 'undefined') {
         (document.getElementById('title') as HTMLInputElement).value = '';

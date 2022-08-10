@@ -19,6 +19,10 @@ body {
   height: 100vh;
 }
 
+.bar-of-progress {
+  z-index: 1123;
+}
+
 ::selection {
   color: #fff;
   background: #8229c6;
